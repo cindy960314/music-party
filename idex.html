@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+  <title>Yenzzy炎日音樂節 2027</title>
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =============================================
+       全域設定 — 這裡設定整個網站的基本樣式
+       ============================================= */
+
+    /* 重置預設樣式，讓各瀏覽器顯示一致 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* 整個網頁的基本字型與背景色 */
+    body {
+      font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+      background-color: #f0f8ff;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* 讓連結沒有底線 */
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* 讓圖片不超出容器 */
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* =============================================
+       顏色變數 — 夏天藍白黃主色調
+       想改顏色只要改這裡就好！
+       ============================================= */
+    :root {
+      --藍色:   #1a8fe3;      /* 天空藍 */
+      --深藍色: #0d6ab0;      /* 深一點的藍 */
+      --淺藍色: #d6eeff;      /* 淡藍背景 */
+      --黃色:   #ffd740;      /* 陽光黃 */
+      --深黃色: #f5b800;      /* 深一點的黃 */
+      --白色:   #ffffff;
+      --淺灰色: #f5f5f5;
+      --深灰色: #555;
+      --文字色: #222;
+    }
+
+    /* =============================================
+       導覽列 (Navbar)
+       ============================================= */
+    nav {
+      background-color: var(--藍色);
+      position: sticky;   /* 讓導覽列固定在頂部 */
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 60px;
+    }
+
+    /* 導覽列左側的網站名稱 */
+    .nav-logo {
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: var(--黃色);
+      letter-spacing: 1px;
+    }
+
+    /* 導覽列右側的選單連結 */
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      color: var(--白色);
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    /* 滑鼠移過去會出現底線 */
+    .nav-links a:hover {
+      border-bottom-color: var(--黃色);
+      color: var(--黃色);
+    }
+
+    /* 手機版漢堡選單按鈕（預設隱藏） */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 3px;
+      background: var(--白色);
+      border-radius: 3px;
+    }
+
+    /* 手機版展開的選單 */
+    .nav-mobile {
+      display: none;
+      flex-direction: column;
+      background-color: var(--深藍色);
+      padding: 12px 20px;
+    }
+    .nav-mobile.open {
+      display: flex;
+    }
+    .nav-mobile a {
+      color: var(--白色);
+      padding: 10px 0;
+      font-size: 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+
+
+    /* =============================================
+       主視覺區 (Hero Section)
+       ============================================= -->
+
+    /* =============================================
+       【可編輯】主視覺背景圖片
+       要換圖片的話，把下面 background 的 url() 改成你的圖片路徑
+       例如：background: url('你的圖片.jpg') center/cover no-repeat;
+       目前用漸層色代替背景圖片
+       ============================================= */
+    #hero {
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(10, 80, 160, 0.72) 0%,
+          rgba(26, 143, 227, 0.55) 50%,
+          rgba(255, 215, 64, 0.35) 100%
+        ),
+        linear-gradient(135deg, #1a6fb5 0%, #4dc8f5 50%, #ffe066 100%);
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* 裝飾用的圓形泡泡（夏日感） */
+    #hero::before {
+      content: '☀️';
+      position: absolute;
+      top: 30px;
+      right: 8%;
+      font-size: 5rem;
+      opacity: 0.55;
+      animation: float 4s ease-in-out infinite;
+    }
+    #hero::after {
+      content: '🎵';
+      position: absolute;
+      bottom: 50px;
+      left: 6%;
+      font-size: 3.5rem;
+      opacity: 0.45;
+      animation: float 5s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-14px); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+    }
+
+    /* =============================================
+       【可編輯】主視覺的小標籤文字（日期地點那行）
+       ============================================= */
+    .hero-badge {
+      display: inline-block;
+      background-color: var(--黃色);
+      color: #333;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 5px 18px;
+      border-radius: 20px;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+    }
+
+    /* =============================================
+       【可編輯】主視覺大標題 — 活動名稱
+       ============================================= */
+    .hero-title {
+      font-size: clamp(2.6rem, 8vw, 5rem);
+      font-weight: 900;
+      color: var(--白色);
+      line-height: 1.15;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+      margin-bottom: 14px;
+    }
+
+    /* =============================================
+       【可編輯】主視覺標語 — 夏日宣傳句
+       ============================================= */
+    .hero-slogan {
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      color: rgba(255,255,255,0.92);
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    /* =============================================
+       【可編輯】日期與地點文字
+       ============================================= */
+    .hero-info {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 30px;
+    }
+
+    /* =============================================
+       【可編輯】購票按鈕連結 — 改 href 可以連到購票網頁
+       ============================================= */
+    .btn-main {
+      display: inline-block;
+      background-color: var(--黃色);
+      color: #222;
+      font-size: 1.05rem;
+      font-weight: 700;
+      padding: 13px 36px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.15s;
+      margin: 6px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+    }
+    .btn-main:hover {
+      background-color: var(--深黃色);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      display: inline-block;
+      background-color: transparent;
+      color: var(--白色);
+      font-size: 1.05rem;
+      font-weight: 700;
+      padding: 12px 34px;
+      border-radius: 30px;
+      border: 2px solid rgba(255,255,255,0.7);
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.15s;
+      margin: 6px;
+    }
+    .btn-outline:hover {
+      background-color: rgba(255,255,255,0.15);
+      transform: translateY(-2px);
+    }
+
+
+    /* =============================================
+       通用區塊樣式
+       ============================================= */
+    section {
+      padding: 70px 20px;
+    }
+
+    /* 內容最大寬度，讓大螢幕不要太寬 */
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+    }
+
+    /* 每個區塊的大標題 */
+    .section-title {
+      text-align: center;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 900;
+      color: var(--深藍色);
+      margin-bottom: 10px;
+    }
+
+    /* 標題下方的橫線裝飾 */
+    .title-line {
+      width: 50px;
+      height: 4px;
+      background-color: var(--黃色);
+      margin: 0 auto 16px;
+      border-radius: 2px;
+    }
+
+    /* 標題下方的說明文字 */
+    .section-sub {
+      text-align: center;
+      color: var(--深灰色);
+      font-size: 0.95rem;
+      margin-bottom: 40px;
+    }
+
+
+    /* =============================================
+       關於活動 (About Section)
+       ============================================= */
+    #about {
+      background-color: var(--白色);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    /* =============================================
+       【可編輯】關於活動的插圖
+       把下面漸層換成你的圖片：
+       background: url('活動圖片.jpg') center/cover;
+       ============================================= */
+    /* 關於活動的圖片樣式 */
+    .about-image {
+      border-radius: 16px;
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .about-text h3 {
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--深藍色);
+      margin-bottom: 14px;
+    }
+
+    .about-text p {
+      color: #555;
+      font-size: 0.97rem;
+      line-height: 1.85;
+      margin-bottom: 14px;
+    }
+
+    /* 活動資訊小卡 */
+    .info-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .info-badge {
+      background-color: var(--淺藍色);
+      color: var(--深藍色);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+
+    /* =============================================
+       演出陣容 (Lineup Section)
+       ============================================= */
+    #lineup {
+      background-color: var(--淺藍色);
+    }
+
+    /* 演出者卡片容器 */
+    .lineup-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    /* =============================================
+       【可編輯】演出者卡片
+       複製這個 .artist-card 就能新增更多演出者
+       ============================================= */
+    .artist-card {
+      background-color: var(--白色);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-align: center;
+    }
+
+    .artist-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.14);
+    }
+
+    /* =============================================
+       【可編輯】演出者圖片區域
+       把漸層換成真實圖片：
+       background: url('歌手照片.jpg') center/cover;
+       ============================================= */
+    .artist-photo {
+      width: 100%;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+    }
+
+    /* 讓 <img> 圖片也維持固定高度、不變形 */
+    .artist-card img.artist-photo {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* 讓所有卡片等高，內容由上往下排列 */
+    .artist-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 讓卡片底部文字區自動撐滿剩餘空間，對齊底部 */
+    .artist-card .artist-info {
+      flex: 1;
+    }
+
+    /* 每張卡片不同背景色 */
+    .artist-photo.color-1 { background: linear-gradient(135deg, #1a8fe3, #4dc8f5); }
+    .artist-photo.color-2 { background: linear-gradient(135deg, #ffd740, #ff9f00); }
+    .artist-photo.color-3 { background: linear-gradient(135deg, #5ec4a1, #1a8fe3); }
+    .artist-photo.color-4 { background: linear-gradient(135deg, #f87878, #ffd740); }
+    .artist-photo.color-5 { background: linear-gradient(135deg, #a78bfa, #1a8fe3); }
+    .artist-photo.color-6 { background: linear-gradient(135deg, #34d399, #ffd740); }
+
+    .artist-info {
+      padding: 16px;
+    }
+
+    /* =============================================
+       【可編輯】演出者名稱
+       ============================================= */
+    .artist-name {
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: var(--深藍色);
+      margin-bottom: 4px;
+    }
+
+    /* =============================================
+       【可編輯】演出類型標籤
+       ============================================= */
+    .artist-type {
+      font-size: 0.8rem;
+      color: var(--深灰色);
+      background-color: var(--淺藍色);
+      display: inline-block;
+      padding: 3px 12px;
+      border-radius: 12px;
+      margin-bottom: 8px;
+    }
+
+    .artist-desc {
+      font-size: 0.85rem;
+      color: #777;
+      line-height: 1.6;
+    }
+
+
+    /* =============================================
+       購票資訊 (Tickets Section)
+       ============================================= */
+    #tickets {
+      background-color: var(--白色);
+    }
+
+    .tickets-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    /* =============================================
+       【可編輯】票券卡片
+       複製 .ticket-card 就能新增票種
+       ============================================= */
+    .ticket-card {
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+      border: 2px solid #dce9f5;
+      background-color: var(--淺灰色);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .ticket-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+
+    /* 推薦票種（藍色樣式） */
+    .ticket-card.featured {
+      background-color: var(--藍色);
+      border-color: var(--藍色);
+      color: var(--白色);
+    }
+
+    /* =============================================
+       【可編輯】票種標籤文字（例如「最受歡迎」）
+       ============================================= */
+    .ticket-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 4px 14px;
+      border-radius: 14px;
+      display: inline-block;
+      margin-bottom: 14px;
+    }
+
+    .ticket-label.early  { background-color: #d4f5de; color: #1a7a3d; }
+    .ticket-label.normal { background-color: var(--黃色); color: #333; }
+    .ticket-label.vip    { background-color: #fce4a8; color: #805500; }
+
+    /* =============================================
+       【可編輯】票種名稱
+       ============================================= */
+    .ticket-name {
+      font-size: 1.3rem;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    /* =============================================
+       【可編輯】票價 — 直接改數字就好
+       ============================================= */
+    .ticket-price {
+      font-size: 2.2rem;
+      font-weight: 900;
+      margin-bottom: 6px;
+      color: var(--深藍色);
+    }
+
+    .ticket-card.featured .ticket-price {
+      color: var(--黃色);
+    }
+
+    .ticket-price-note {
+      font-size: 0.8rem;
+      color: #888;
+      margin-bottom: 20px;
+    }
+
+    .ticket-card.featured .ticket-price-note {
+      color: rgba(255,255,255,0.65);
+    }
+
+    /* 票券包含項目清單 */
+    .ticket-perks {
+      list-style: none;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+
+    .ticket-perks li {
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      font-size: 0.88rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ticket-card.featured .ticket-perks li {
+      border-bottom-color: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.9);
+    }
+
+    .check {
+      color: #2dbe60;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .ticket-card.featured .check {
+      color: var(--黃色);
+    }
+
+    /* =============================================
+       【可編輯】購票按鈕 — 改 href 連到購票網頁
+       ============================================= */
+    .btn-ticket {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      border-radius: 25px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border: 2px solid var(--藍色);
+      background-color: transparent;
+      color: var(--藍色);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-ticket:hover {
+      background-color: var(--藍色);
+      color: var(--白色);
+    }
+
+    .ticket-card.featured .btn-ticket {
+      background-color: var(--黃色);
+      border-color: var(--黃色);
+      color: #222;
+    }
+
+    .ticket-card.featured .btn-ticket:hover {
+      background-color: var(--深黃色);
+      border-color: var(--深黃色);
+    }
+
+
+    /* =============================================
+       頁尾 (Footer)
+       ============================================= */
+    footer {
+      background-color: #0d3f6b;
+      color: rgba(255,255,255,0.85);
+      padding: 50px 20px 30px;
+    }
+
+    .footer-grid {
+      max-width: 1050px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 36px;
+      margin-bottom: 36px;
+    }
+
+    /* =============================================
+       【可編輯】頁尾品牌名稱與說明
+       ============================================= */
+    .footer-brand-name {
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: var(--黃色);
+      margin-bottom: 10px;
+    }
+
+    .footer-brand-desc {
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .footer-col h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--黃色);
+      margin-bottom: 14px;
+      letter-spacing: 1px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 8px;
+    }
+
+    .footer-col ul a {
+      color: rgba(255,255,255,0.65);
+      font-size: 0.87rem;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul a:hover {
+      color: var(--黃色);
+    }
+
+    /* =============================================
+       【可編輯】社群媒體圖示按鈕
+       改 href 可以連到你的社群頁面
+       ============================================= */
+    .social-icons {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .social-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: background-color 0.2s;
+    }
+
+    .social-icon:hover {
+      background-color: var(--黃色);
+    }
+
+    /* 頁尾最底部版權列 */
+    .footer-bottom {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.35);
+    }
+
+
+    /* =============================================
+       手機版響應式設計（螢幕寬度小於 768px）
+       ============================================= */
+    @media (max-width: 768px) {
+
+      /* 導覽列：隱藏連結，顯示漢堡按鈕 */
+      .nav-links {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+
+      /* 關於活動：改成單欄 */
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      /* 演出陣容：改成兩欄 */
+      .lineup-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      /* 購票資訊：改成單欄 */
+      .tickets-grid {
+        grid-template-columns: 1fr;
+      }
+
+      /* 頁尾：改成單欄 */
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+    }
+
+    /* 超小螢幕（手機直立） */
+    @media (max-width: 480px) {
+      /* 演出陣容：改成單欄 */
+      .lineup-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-title {
+        font-size: 2.2rem;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+ 
+  <nav>
+    <div class="nav-container">
+      <div class="nav-logo">🌊 Yenzzy炎日音樂節 2027</div>
+
+      <ul class="nav-links">
+        <li><a href="#about">關於活動</a></li>
+        <li><a href="#lineup">演出陣容</a></li>
+        <li><a href="#tickets">購票資訊</a></li>
+        <li><a href="#contact">聯絡我們</a></li>
+      </ul>
+
+      <button class="hamburger" id="hamburgerBtn" aria-label="開啟選單">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <div class="nav-mobile" id="mobileMenu">
+      <a href="#about"   onclick="closeMenu()">關於活動</a>
+      <a href="#lineup"  onclick="closeMenu()">演出陣容</a>
+      <a href="#tickets" onclick="closeMenu()">購票資訊</a>
+      <a href="#contact" onclick="closeMenu()">聯絡我們</a>
+    </div>
+  </nav>
+
+
+  
+  <section id="hero">
+    <div class="hero-content">
+
+      <div class="hero-badge">📅 2027 年 7 月 25–27 日 · 台北市</div>
+
+    
+      <h1 class="hero-title">Yenzzy炎日音樂節 2027</h1>
+
+      <p class="hero-slogan">🎶 一起迎接最熱血的夏天！</p>
+
+      <p class="hero-info">📍 大安森林公園戶外舞台 · 台北市</p>
+
+   
+      <a href="https://forms.gle/4ZPbJHDasNrtBJo77" class="btn-main">立即購票</a>
+            <a href="https://forms.gle/4ZPbJHDasNrtBJo77" class="btn-main">購票連結</a>
+
+      <a href="#lineup" class="btn-outline">查看演出陣容</a>
+
+    </div>
+  </section>
+
+
+  <section id="about">
+    <div class="container">
+
+      <h2 class="section-title">關於活動</h2>
+      <div class="title-line"></div>
+      <p class="section-sub">讓音樂、陽光和笑聲填滿你的夏天</p>
+
+      <div class="about-grid">
+
+ 
+        <!-- =============================================
+             【可編輯】關於活動的圖片
+             把 src 改成你的圖片檔名，圖片放在和 HTML 同一個資料夾
+             ============================================= -->
+        <img src="海報.png" alt="Yenzzy炎日音樂節海報" class="about-image">
+
+
+        <!-- 右側文字 -->
+        <div class="about-text">
+
+          <!-- 【可編輯】關於活動的標題 -->
+          <h3>什麼是Yenzzy炎日音樂節？</h3>
+
+          <!-- 【可編輯】活動介紹文字，可以修改或新增段落 -->
+          <p>
+            Yenzzy炎日音樂節 是一年一度在台北舉辦的戶外流行音樂盛典，
+            我們邀請了許多台灣本地的優秀歌手與樂團，
+            在開放的大自然舞台上為你獻上最精彩的演出！
+          </p>
+          <p>
+            無論你喜歡流行、搖滾、R&B 還是電子音樂，
+            這裡都有屬於你的舞台。帶上好友，一起在夏夜裡唱歌跳舞，
+            創造屬於你們的青春回憶。🌟
+          </p>
+
+       
+          <div class="info-badges">
+            <span class="info-badge">🎵 20+ 組演出</span>
+            <span class="info-badge">🎪 3 個舞台</span>
+            <span class="info-badge">🌞 3 天活動</span>
+            <span class="info-badge">👥 全年齡適合</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="lineup">
+    <div class="container">
+
+      <h2 class="section-title">演出陣容</h2>
+      <div class="title-line"></div>
+      <p class="section-sub">今年夏天，這些精彩藝人將為你帶來最棒的演出</p>
+
+      <div class="lineup-grid">
+
+       
+        <div class="artist-card">
+          <img src="血肉.jpg" alt="血肉果汁機Flesh juicer" class="artist-photo">
+          <div class="artist-info">
+            <div class="artist-name">血肉果汁機Flesh juicer</div>
+            <div class="artist-type">流行・Pop</div>
+            <p class="artist-desc">清爽嗓音搭配活力舞台，是今夏最受期待的新生代歌手之一。</p>
+          </div>
+        </div>
+
+        <!-- =============================================
+             演出者 2
+             ============================================= -->
+        <div class="artist-card">
+          <img src="旅人.jpg" alt="旅人Traveller" class="artist-photo">
+          <div class="artist-info">
+            <div class="artist-name">旅人Traveller</div>
+            <div class="artist-type">搖滾・Rock</div>
+            <p class="artist-desc">來自台北的搖滾四人組，充滿衝勁的現場表演讓每位觀眾都熱血沸騰。</p>
+          </div>
+        </div>
+
+        <!-- =============================================
+             演出者 3
+             ============================================= -->
+        <div class="artist-card">
+          <img src="盧廣仲.jpg" alt="盧廣仲" class="artist-photo">
+          <div class="artist-info">
+            <div class="artist-name">盧廣仲</div>
+            <div class="artist-type">R&B・靈魂樂</div>
+            <p class="artist-desc">迷人的靈魂嗓音與細膩情感，每一首歌都能直達聽眾內心深處。</p>
+          </div>
+        </div>
+
+        <!-- =============================================
+             演出者 4
+             ============================================= -->
+        <div class="artist-card">
+          <img src="艾葳.jpg" alt="艾薇Ivy" class="artist-photo">
+          <div class="artist-info">
+            <div class="artist-name">艾薇Ivy</div>
+            <div class="artist-type">電子・Electronic</div>
+            <p class="artist-desc">夜間舞台壓軸嘉賓，用電子節拍把全場帶入最嗨的派對氛圍。</p>
+          </div>
+        </div>
+
+        <!-- =============================================
+             演出者 5
+             ============================================= -->
+        <div class="artist-card">
+          <img src="館青.jpg" alt="公館青少年" class="artist-photo">
+          <div class="artist-info">
+            <div class="artist-name">公館青少年</div>
+            <div class="artist-type">嘻哈・Hip-Hop</div>
+            <p class="artist-desc">三人嘻哈組合，融合台語與國語歌詞，展現最道地的台灣街頭文化。</p>
+          </div>
+        </div>
+
+        <!-- =============================================
+             演出者 6
+             ============================================= -->
+        <div class="artist-card">
+          <img src="美秀.jpg" alt="美秀集團" class="artist-photo">
+          <div class="artist-info">
+            <div class="artist-name">美秀集團</div>
+            <div class="artist-type">獨立民謠・Indie Folk</div>
+            <p class="artist-desc">吉他與口琴交織的溫柔旋律，適合在夕陽下靜靜聆聽的美好時光。</p>
+          </div>
+        </div>
+
+      </div><!-- /.lineup-grid -->
+    </div>
+  </section>
+
+
+  <!-- =============================================
+       購票資訊區塊
+       =============================================
+       【可編輯】修改票種名稱、價格、包含項目
+       ============================================= -->
+  <section id="tickets">
+    <div class="container">
+
+      <h2 class="section-title">購票資訊</h2>
+      <div class="title-line"></div>
+      <p class="section-sub">選擇適合你的票種，提前購票享優惠！</p>
+
+      <div class="tickets-grid">
+
+        <!-- =============================================
+             票種 1：早鳥票
+             【可編輯】修改票種、價格、包含項目
+             ============================================= -->
+        <div class="ticket-card">
+          <!-- 【可編輯】票種標籤 -->
+          <span class="ticket-label early">🐣 早鳥優惠</span>
+          <!-- 【可編輯】票種名稱 -->
+          <div class="ticket-name">早鳥票</div>
+          <!-- 【可編輯】票價 -->
+          <div class="ticket-price">NT$888</div>
+          <div class="ticket-price-note">限量 500 張，售完為止</div>
+          <!-- 【可編輯】包含項目 -->
+          <ul class="ticket-perks">
+            <li><span class="check">✓</span> 三日活動入場</li>
+            <li><span class="check">✓</span> 主舞台普通區</li>
+            <li><span class="check">✓</span> 活動手冊一本</li>
+            <li><span class="check">✓</span> 限量早鳥貼紙</li>
+          </ul>
+          <!-- 【可編輯】購票按鈕連結 -->
+          <a href="#" class="btn-ticket">立即購買早鳥票</a>
+        </div>
+
+        <!-- =============================================
+             票種 2：一般票（設為推薦/藍色）
+             【可編輯】修改票種、價格、包含項目
+             ============================================= -->
+        <div class="ticket-card featured">
+          <!-- 【可編輯】票種標籤 -->
+          <span class="ticket-label normal">⭐ 最受歡迎</span>
+          <!-- 【可編輯】票種名稱 -->
+          <div class="ticket-name">一般票</div>
+          <!-- 【可編輯】票價 -->
+          <div class="ticket-price">NT$1,280</div>
+          <div class="ticket-price-note">三日全場通行</div>
+          <!-- 【可編輯】包含項目 -->
+          <ul class="ticket-perks">
+            <li><span class="check">✓</span> 三日活動入場</li>
+            <li><span class="check">✓</span> 全區自由移動</li>
+            <li><span class="check">✓</span> 活動周邊紀念品</li>
+            <li><span class="check">✓</span> 指定餐飲折扣</li>
+          </ul>
+          <!-- 【可編輯】購票按鈕連結 -->
+          <a href="#" class="btn-ticket">立即購買一般票</a>
+        </div>
+
+        <!-- =============================================
+             票種 3：VIP 票
+             【可編輯】修改票種、價格、包含項目
+             ============================================= -->
+        <div class="ticket-card">
+          <!-- 【可編輯】票種標籤 -->
+          <span class="ticket-label vip">👑 尊榮體驗</span>
+          <!-- 【可編輯】票種名稱 -->
+          <div class="ticket-name">VIP 票</div>
+          <!-- 【可編輯】票價 -->
+          <div class="ticket-price">NT$3,500</div>
+          <div class="ticket-price-note">限量 100 位，尊貴體驗</div>
+          <!-- 【可編輯】包含項目 -->
+          <ul class="ticket-perks">
+            <li><span class="check">✓</span> 三日活動入場</li>
+            <li><span class="check">✓</span> VIP 專屬觀賞區</li>
+            <li><span class="check">✓</span> 藝人見面會資格</li>
+            <li><span class="check">✓</span> 精選餐飲免費享用</li>
+            <li><span class="check">✓</span> 獨家 VIP 紀念品包</li>
+          </ul>
+          <!-- 【可編輯】購票按鈕連結 -->
+          <a href="#" class="btn-ticket">立即購買 VIP 票</a>
+        </div>
+
+      </div><!-- /.tickets-grid -->
+
+      <!-- 注意事項 -->
+      <p style="text-align:center; margin-top:28px; color:#888; font-size:0.83rem;">
+        ⚠️ 所有票券均不提供退款，購買前請確認日期。票券限本人使用，請攜帶身分證件入場。
+      </p>
+
+    </div>
+  </section>
+
+
+  <footer id="contact">
+    <div class="footer-grid">
+
+      <!-- 左側品牌區 -->
+      <div>
+        <div class="footer-brand-name">🌊 Yenzzy炎日音樂節</div>
+        <p class="footer-brand-desc">
+          Yenzzy炎日音樂節 2027<br>
+          讓音樂點亮你的夏天，每一年我們都在這裡等你。
+        </p>
+       
+        <div class="social-icons">
+          <a href="#" class="social-icon" title="Facebook">📘</a>
+          <a href="#" class="social-icon" title="Instagram">📷</a>
+          <a href="#" class="social-icon" title="YouTube">▶️</a>
+          <a href="#" class="social-icon" title="LINE">💬</a>
+        </div>
+      </div>
+
+      <!-- 中間快速連結 -->
+      <div class="footer-col">
+        <h4>快速連結</h4>
+        <ul>
+          <li><a href="#about">關於活動</a></li>
+          <li><a href="#lineup">演出陣容</a></li>
+          <li><a href="#tickets">購票資訊</a></li>
+          <li><a href="#">活動地圖</a></li>
+        </ul>
+      </div>
+
+      <!-- 右側聯絡資訊 -->
+      <div class="footer-col">
+        <h4>聯絡我們</h4>
+        <ul>
+          <!-- 【可編輯】改成你的聯絡方式 -->
+          <li><a href="mailto:info@taipeisummerfest.tw">📧 info@taipeisummerfest.tw</a></li>
+          <li><a href="tel:+886212345678">📞 (02) 1234-5678</a></li>
+          <li><a href="#">📍 台北市大安區大安森林公園</a></li>
+          <li><a href="#">❓ 常見問題 FAQ</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- 版權宣告 -->
+    <!-- 【可編輯】改成你的名字或組織 -->
+    <div class="footer-bottom">
+      © 2027 Yenzzy炎日音樂節<br>
+    </div>
+  </footer>
+
+
+  <!-- =============================================
+       JavaScript 功能
+       =============================================
+       這裡放導覽列的漢堡選單開關功能
+       ============================================= -->
+  <script>
+    // 漢堡選單開關
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu   = document.getElementById('mobileMenu');
+
+    hamburgerBtn.addEventListener('click', function () {
+      // 點按鈕時切換選單的 open 狀態
+      mobileMenu.classList.toggle('open');
+    });
+
+    // 點選選單連結後關閉選單
+    function closeMenu() {
+      mobileMenu.classList.remove('open');
+    }
+
+    // 滾動時讓導覽列增加陰影效果
+    window.addEventListener('scroll', function () {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 10) {
+        nav.style.boxShadow = '0 4px 16px rgba(0,0,0,0.2)';
+      } else {
+        nav.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
+      }
+    });
+  </script>
+
+</body>
+</html>
